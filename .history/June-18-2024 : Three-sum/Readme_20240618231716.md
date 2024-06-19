@@ -1,0 +1,45 @@
+Three Sum Problem
+
+
+Problem Description : 
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0 and note that the solution set must not contain duplicate triplets.
+
+Example 
+Input: nums = [-1, 0, 1, 2, -1, -4]
+Output: [[-1, -1, 2], [-1, 0, 1]]
+Explanation:
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+The distinct triplets are [-1, -1, 2] and [-1, 0, 1].
+
+
+
+My Solution : 
+
+   1) My basic idea before solving this problem is , dividing the given problem into a sum , and assuming the current traversing index as my target 
+   2) This makes this problem as known problem 
+
+The approach i  used is first sorting the array and the two-pointer technique to find all unique triplets that sum up to zero and collect the values into a list 
+
+Steps:
+
+Step 1 ) Sort the array.
+
+step 2) Iterate through each number, treating it as the first number of the triplet.
+
+Step 3) Use two pointers to find the other two numbers of the triplet such that their sum is equal to the negative of the first number.
+         Skip duplicate elements to ensure all triplets are unique.
+
+import java.util.*;
+
+
+Complexity Analysis
+  Time Complexity
+     Sorting the array takes O(n log n).
+      The main loop runs in O(n), and for each element, the two-pointer technique takes O(n) in the worst case.
+      Thus, the overall time complexity is O(n^2).
+
+   Space Complexity
+      The space complexity is O(1) if we disregard the space used for the output list.
+      The output list itself can take up to O(n^2) space in the worst case, but this is output space.
