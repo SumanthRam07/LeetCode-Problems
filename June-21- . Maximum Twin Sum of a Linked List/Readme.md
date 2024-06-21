@@ -1,0 +1,81 @@
+
+Hi Everyone , 
+
+Today I have solved this problem  and i realized many  important working scenarios. 
+
+This might feel like a beginers mistake, but i did not knew all this untill today and yet everyday is a learning opetunity. 
+
+1) LinkedList  works by references , 
+
+Example 
+     Let us assume that , we have a  ListNode head ; 
+     if we do ,  ListNode temp = head ; 
+
+     and temp.next = null ; then automatically head.next would be also null . 
+     , for traversing purpose we can use this temp nodes , but for interchaing nodes we must not change references directly. 
+
+
+**     Problem statement : **
+## 
+      In a linked list of size n, where n is even, the ith node (0-indexed) of the linked list is known as the twin of the (n-1-i)th node, if 0 <= i <= (n / 2) - 1.
+
+         For example, if n = 4, then node 0 is the twin of node 3, and node 1 is the twin of node 2. These are the only nodes with twins for n = 4.
+         The twin sum is defined as the sum of a node and its twin.
+        Given the head of a linked list with even length, return the maximum twin sum of the linked list.
+
+ 
+
+Example 1:
+Input: head = [5,4,2,1]
+Output: 6
+Explanation:
+Nodes 0 and 1 are the twins of nodes 3 and 2, respectively. All have twin sum = 6.
+There are no other nodes with twins in the linked list.
+Thus, the maximum twin sum of the linked list is 6. 
+
+
+
+**  My Initial Approach 
+
+      At first , i took a temp node and reversed the entire linked list and  though of comparing to head node, but as i was saying at the start my head references would be changed , and if we reverese the nodes , our head would become the last node ( as we reversed and head.next = null) . 
+
+      I relaized this a little late by doing the debugging. 
+
+
+**  My second optimized approach 
+
+    Step 1:  Take the two pointer , fast and slow.  and move the fast node by two steps and slow nodes by one step 
+             By the time fast pointer reaches the null , slow pointer would be exactly at  middle half 
+
+
+   Step 2 :  Keeping this in mind , i started to reverse my linkedlist  while moving the pointers forward as below 
+             ```java
+              while( fast != null && fast.next != null)
+            {
+                fast = fast.next.next ; 
+                
+                next = slow.next ; 
+                slow.next = prev ; 
+                
+                  prev = slow ; 
+                   slow = next ; 
+               
+                
+            } 
+             ``` 
+      
+    Step 3 : Let us take an example : Input: head = [5,4,2,1]
+            After executing the step step2 , out out puts would be 
+           
+            prev =  4->5 -> null 
+            slow  = 2->1>null 
+
+
+    Step 4 : From now you can just traverse any of the prev or slow untill it reaches null and compare the maxSum  and return it 
+         
+
+
+Thank you !
+
+                       
+               
