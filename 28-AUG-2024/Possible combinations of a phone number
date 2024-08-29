@@ -1,0 +1,74 @@
+class Solution {
+
+       public List<String> list1 = new ArrayList<>(); 
+       private  HashMap<Character , String> map1 = new HashMap<>(); 
+    public List<String> letterCombinations(String digits) {
+
+        if( digits.isEmpty())
+        {
+
+            return list1 ;
+        }
+       
+     
+
+       
+
+       map1.put('2' , "abc" ); 
+       map1.put('3' , "def" ); 
+       map1.put('4' , "ghi" ); 
+       map1.put('5' , "jkl" ); 
+       map1.put('6' , "mno" ); 
+       map1.put('7' , "pqrs" ); 
+       map1.put('8' , "tuv" ); 
+       map1.put('9' , "wxyz" );
+
+       Rearrange( new StringBuilder() , digits , 0 )   ;
+
+       return list1 ;       
+      } 
+
+
+      public void Rearrange( StringBuilder sb ,  String digits, int index)
+      {
+           if( index==digits.length())
+           {
+
+             list1.add(sb.toString()); 
+             return ; 
+
+           }
+           else
+           {
+
+                String str = map1.get( digits.charAt(index)); 
+
+                if( str !=null)
+                {
+                  
+                  for( int i = 0 ; i < str.length() ; i++)
+                  {
+                    
+                    sb.append( str.charAt(i)) ; 
+
+                    Rearrange( sb  , digits , index+1) ;
+                    sb.deleteCharAt(sb.length()-1) ;
+
+
+
+
+                  }
+                 
+
+
+
+
+                }
+   
+           }
+
+      }
+
+
+     
+}
