@@ -1,0 +1,39 @@
+class Solution {
+    
+    int[][] maze ;
+    
+    int[][] memory ; 
+    
+    int sum ; 
+    public int uniquePaths(int m, int n) {
+        
+        maze = new int[m][n] ; 
+        
+        memory = new int[m][n] ; 
+        
+        
+       return  uniquePathsHelper(0, 0) ;
+        
+       
+        
+        
+    }
+    
+    
+      public int uniquePathsHelper(int r, int c ) {
+          
+          if( r == maze.length-1 && c == maze[0].length-1 ) return 1 ; 
+          
+          if( r < 0 || r >= maze.length  || c < 0 || c >= maze[0].length)  return 0 ; 
+          
+          if( memory[r][c] != 0 ) return memory[r][c]  ;
+          
+       memory[r][c] = uniquePathsHelper( r, c+1)  + uniquePathsHelper( r+1, c) ;  
+         
+          return memory[r][c] ;
+         
+        
+        
+        
+    }
+}
